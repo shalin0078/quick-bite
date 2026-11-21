@@ -36,10 +36,10 @@ export default function DeliveryPartnerPage() {
     delivery_lng: 73.1812,
     totalAmount: 263,
     address: {
-      name: 'Shalin Rathod',
+      name: 'Demo Customer',
       street: '123, Green Park',
       city: 'Vadodara',
-      phone: '+91 98765 43210'
+      phone: '+91 90000 00000'
     }
   };
 
@@ -125,7 +125,7 @@ export default function DeliveryPartnerPage() {
     const result = await otpService.generateAndSendOtp({
       orderId: activeOrder.id,
       customerName: activeOrder.address?.name || 'Customer',
-      customerEmail: 'shalin@example.com' // customer's registered email
+      customerEmail: activeOrder.address?.email || 'customer@quickbite.demo' // customer's registered email
     });
 
     if (result.success) {
@@ -247,11 +247,11 @@ export default function DeliveryPartnerPage() {
                 <div className="pt-2 border-t border-gray-200 flex items-center justify-between text-xs">
                   <span className="text-gray-500">Customer Contact:</span>
                   <a
-                    href={`tel:${activeOrder.address?.phone || '+919876543210'}`}
+                    href={`tel:${activeOrder.address?.phone || '+919000000000'}`}
                     className="font-bold text-[#FC8019] hover:underline flex items-center space-x-1"
                   >
                     <Phone className="w-3 h-3" />
-                    <span>{activeOrder.address?.phone || '+91 98765 43210'}</span>
+                    <span>{activeOrder.address?.phone || '+91 90000 00000'}</span>
                   </a>
                 </div>
               </div>

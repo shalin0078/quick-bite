@@ -80,15 +80,15 @@ export default function LiveTrackingPage() {
       { name: 'Margherita Pizza', quantity: 1, price: 199 }
     ],
     address: {
-      name: 'Shalin Rathod',
+      name: 'Demo Customer',
       street: '123, Green Park',
       city: 'Vadodara',
       pincode: '390001',
-      phone: '+91 98765 43210'
+      phone: '+91 90000 00000'
     },
     rider: {
       name: 'Ramesh Kumar',
-      phone: '+91 98250 12345',
+      phone: '+91 90000 11111',
       bikeNumber: 'GJ-06-BQ-4912',
       rating: 4.9
     }
@@ -222,7 +222,7 @@ export default function LiveTrackingPage() {
     await otpService.generateAndSendOtp({
       orderId: order.id,
       customerName: order.address?.name || currentUser?.fullName || 'Customer',
-      customerEmail: currentUser?.email || 'shalin@example.com'
+      customerEmail: currentUser?.email || 'customer@quickbite.demo'
     });
 
     showToast('🛵 Rider Out for Delivery! 6-digit OTP sent to registered email.');
@@ -282,7 +282,7 @@ export default function LiveTrackingPage() {
         otpService.generateAndSendOtp({
           orderId: order.id,
           customerName: order.address?.name || currentUser?.fullName || 'Customer',
-          customerEmail: currentUser?.email || 'shalin@example.com'
+          customerEmail: currentUser?.email || 'customer@quickbite.demo'
         });
       }
     }
@@ -332,7 +332,7 @@ export default function LiveTrackingPage() {
       // Send delivery success confirmation email
       await emailService.sendDeliverySuccessEmail({
         customerName: order.address?.name || currentUser?.fullName || 'Customer',
-        customerEmail: currentUser?.email || 'shalin@example.com',
+        customerEmail: currentUser?.email || 'customer@quickbite.demo',
         orderId: order.id
       });
 
@@ -355,7 +355,7 @@ export default function LiveTrackingPage() {
       otpService.generateAndSendOtp({
         orderId: order.id,
         customerName: order.address?.name || currentUser?.fullName || 'Customer',
-        customerEmail: currentUser?.email || 'shalin@example.com'
+        customerEmail: currentUser?.email || 'customer@quickbite.demo'
       });
 
       if (targetIdx === 6) {
@@ -644,7 +644,7 @@ export default function LiveTrackingPage() {
                     </div>
 
                     <p className="text-xs text-[#686B78] mt-1 leading-relaxed">
-                      Your delivery partner is at your doorstep with your food. Please share the <strong>6-digit OTP</strong> sent to your email (<strong className="text-gray-900">{currentUser?.email || 'shalin@example.com'}</strong>) or verify below:
+                      Your delivery partner is at your doorstep with your food. Please share the <strong>6-digit OTP</strong> sent to your email (<strong className="text-gray-900">{currentUser?.email || 'customer@quickbite.demo'}</strong>) or verify below:
                     </p>
 
                     {/* Inline Verification Input Form */}
@@ -729,7 +729,7 @@ export default function LiveTrackingPage() {
 
               <div className="pt-3 flex space-x-2">
                 <a
-                  href={`tel:${order.rider?.phone || '+919825012345'}`}
+                  href={`tel:${order.rider?.phone || '+919000011111'}`}
                   className="flex-1 py-2 bg-gray-50 hover:bg-orange-50 text-gray-800 hover:text-[#FC8019] rounded-xl text-xs font-bold border border-gray-200 flex items-center justify-center space-x-1.5 transition"
                 >
                   <Phone className="w-3.5 h-3.5" />
@@ -756,7 +756,7 @@ export default function LiveTrackingPage() {
                     Email Delivery OTP Verification
                   </h4>
                   <p className="text-xs text-[#686B78] mt-1 leading-relaxed">
-                    A secure 6-digit verification code has been dispatched to your registered email (<strong className="text-gray-900">{currentUser?.email || 'shalin@example.com'}</strong>).
+                    A secure 6-digit verification code has been dispatched to your registered email (<strong className="text-gray-900">{currentUser?.email || 'customer@quickbite.demo'}</strong>).
                   </p>
                 </div>
               </div>

@@ -50,6 +50,12 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Prototype Environment Notice Strip */}
+      <div className="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white text-[11px] font-bold py-1 px-4 text-center tracking-wide flex items-center justify-center space-x-2 shadow-inner">
+        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+        <span>QuickBite Prototype Build — Evaluation & Demonstration Environment (No Real Financial Transactions)</span>
+      </div>
+
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">

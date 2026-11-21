@@ -135,7 +135,7 @@ export default function RegisterPage() {
                 required
                 value={fullName}
                 onChange={(e) => { setFullName(e.target.value); setError(''); }}
-                placeholder="e.g. Shalin Rathod"
+                placeholder="e.g. Alex Mercer"
                 className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FC8019]/40 focus:border-[#FC8019] transition"
               />
             </div>

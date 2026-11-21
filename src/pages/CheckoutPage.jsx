@@ -66,15 +66,15 @@ export default function CheckoutPage() {
   }
 
   const [paymentMethod, setPaymentMethod] = useState('cod'); // 'cod' | 'upi' | 'card'
-  const [upiId, setUpiId] = useState('shalin@okhdfcbank');
-  const [cardData, setCardData] = useState({ number: '4532 •••• •••• 8821', name: currentUser?.fullName || 'Shalin Rathod', expiry: '08/28', cvv: '•••' });
+  const [upiId, setUpiId] = useState('demo.customer@upi');
+  const [cardData, setCardData] = useState({ number: '4532 •••• •••• 8821', name: currentUser?.fullName || 'Demo Customer', expiry: '08/28', cvv: '•••' });
   const [isNewAddressModalOpen, setIsNewAddressModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // New address form state
   const [newAddrForm, setNewAddrForm] = useState({
-    name: currentUser?.fullName || 'Shalin Rathod',
-    phone: currentUser?.phone || '+91 98765 43210',
+    name: currentUser?.fullName || 'Demo Customer',
+    phone: currentUser?.phone || '+91 90000 00000',
     type: 'Home',
     flat: '',
     street: '',
@@ -123,7 +123,7 @@ export default function CheckoutPage() {
       // Send Order Confirmation Transactional Email
       await emailService.sendOrderConfirmationEmail({
         customerName: currentUser?.fullName || 'Customer',
-        customerEmail: currentUser?.email || 'shalin@example.com',
+        customerEmail: currentUser?.email || 'customer@quickbite.demo',
         order
       });
 

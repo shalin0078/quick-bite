@@ -1,6 +1,7 @@
 // Secure Email-Based Delivery OTP Service
 import { sha256, generateOtp } from './cryptoUtils';
 import { emailService } from './emailService';
+import { supabase, isSupabaseConfigured } from './supabaseClient';
 
 const OTP_EXPIRY_MS = 10 * 60 * 1000; // 10 minutes
 const MAX_ATTEMPTS = 5;
@@ -118,6 +119,21 @@ export const otpService = {
     const cleanOtp = enteredOtp.trim();
     if (!/^\d{6}$/.test(cleanOtp)) {
       return { success: false, message: 'OTP must be exactly 6 digits.' };
+    }
+
+    // 1. If Supabase is configured, execute secure server-side RPC verification
+    if (isSupabaseConfigured && supabase) {
+      try {
+        const { data, error } = await supabase.rpc('verify_delivery_otp', {
+          p_order_id: orderId,
+          p_otp_code: cleanOtp
+        });
+        if (!error && data) {
+          return data;
+        }
+      } catch (err) {
+        console.warn('Supabase RPC verify_delivery_otp fallback to local engine:', err);
+      }
     }
 
     const records = this.getOtpRecords();

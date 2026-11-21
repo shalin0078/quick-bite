@@ -45,7 +45,7 @@ export default function ProfilePage() {
   const [addrForm, setAddrForm] = useState({
     id: null,
     name: currentUser?.fullName || '',
-    phone: currentUser?.phone || '+91 98765 43210',
+    phone: currentUser?.phone || '+91 90000 00000',
     type: 'Home',
     flat: '',
     street: '',
@@ -73,7 +73,7 @@ export default function ProfilePage() {
     setAddrForm({
       id: null,
       name: currentUser?.fullName || '',
-      phone: currentUser?.phone || '+91 98765 43210',
+      phone: currentUser?.phone || '+91 90000 00000',
       type: 'Home',
       flat: '',
       street: '',
@@ -191,7 +191,7 @@ export default function ProfilePage() {
                     type="text"
                     value={profileForm.phone}
                     onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 90000 00000"
                     className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-[#FC8019]"
                   />
                 </div>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
                   <span className="text-xs font-bold text-gray-400 uppercase">Phone Number</span>
-                  <p className="font-extrabold text-gray-900 mt-1">{currentUser?.phone || '+91 98765 43210'}</p>
+                  <p className="font-extrabold text-gray-900 mt-1">{currentUser?.phone || '+91 90000 00000'}</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
                   <span className="text-xs font-bold text-gray-400 uppercase">Unique User ID</span>

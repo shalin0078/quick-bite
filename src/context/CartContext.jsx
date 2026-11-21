@@ -283,8 +283,8 @@ export const CartProvider = ({ children }) => {
       appliedCoupon: appliedCoupon ? appliedCoupon.code : null,
       status: 'Order Placed', // 'Order Placed' -> 'Restaurant Preparing' -> 'Out for Delivery' -> 'Delivered'
       rider: {
-        name: 'Ramesh Kumar',
-        phone: '+91 98250 12345',
+        name: 'Arjun Singh',
+        phone: '+91 90000 11111',
         rating: 4.9,
         bikeNumber: 'GJ-06-BQ-4912'
       },
@@ -323,8 +323,8 @@ export const CartProvider = ({ children }) => {
         delivery_lat: 22.3072,
         delivery_lng: 73.1812,
         rider: {
-          name: 'Ramesh Kumar',
-          phone: '+91 98250 12345',
+          name: 'Arjun Singh',
+          phone: '+91 90000 11111',
           rating: 4.9,
           bikeNumber: 'GJ-06-BQ-4912'
         },

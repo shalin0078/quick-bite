@@ -24,11 +24,11 @@ export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('orders'); // 'orders' | 'riders' | 'customers' | 'emails'
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Sample fleet list
+  // Synthetic demo fleet list
   const deliveryFleet = [
-    { id: 'rider-1', name: 'Ramesh Kumar', phone: '+91 98250 12345', vehicle: 'TVS Ntorq 125', bikeNumber: 'GJ-06-BQ-4912', rating: 4.9, status: 'Active (On Delivery)', activeOrderId: 'QB84920193' },
-    { id: 'rider-2', name: 'Ajay Sharma', phone: '+91 98790 55443', vehicle: 'Honda Activa 6G', bikeNumber: 'GJ-06-CL-8821', rating: 4.8, status: 'Available', activeOrderId: null },
-    { id: 'rider-3', name: 'Vikas Singh', phone: '+91 97123 44112', vehicle: 'Bajaj Pulsar 150', bikeNumber: 'GJ-06-MN-3310', rating: 4.7, status: 'Available', activeOrderId: null },
+    { id: 'rider-1', name: 'Arjun Singh', phone: '+91 90000 11111', vehicle: 'TVS Ntorq 125', bikeNumber: 'GJ-06-BQ-4912', rating: 4.9, status: 'Active (On Delivery)', activeOrderId: 'QB84920193' },
+    { id: 'rider-2', name: 'Karan Patel', phone: '+91 90000 22222', vehicle: 'Honda Activa 6G', bikeNumber: 'GJ-06-CL-8821', rating: 4.8, status: 'Available', activeOrderId: null },
+    { id: 'rider-3', name: 'Vikas Verma', phone: '+91 90000 33333', vehicle: 'Bajaj Pulsar 150', bikeNumber: 'GJ-06-MN-3310', rating: 4.7, status: 'Available', activeOrderId: null },
   ];
 
   const totalRevenue = orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);

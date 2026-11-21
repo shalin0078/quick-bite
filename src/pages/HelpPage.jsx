@@ -16,7 +16,7 @@ export default function HelpPage() {
   const [openFaq, setOpenFaq] = useState(0);
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello Shalin! Welcome to QuickBite Support. How can we help you today?' }
+    { sender: 'bot', text: 'Hello! Welcome to QuickBite Customer Support. How can we help you today?' }
   ]);
   const { showToast } = useCart();
 
@@ -101,8 +101,8 @@ export default function HelpPage() {
             <div>
               <h3 className="font-bold text-gray-900 text-sm">Call Us Toll-Free</h3>
               <p className="text-xs text-[#686B78] mt-0.5">Mon–Sun from 8:00 AM to 1:00 AM</p>
-              <a href="tel:+919876543210" className="text-xs font-bold text-emerald-600 hover:underline block mt-2">
-                +91 98765 43210
+              <a href="tel:+919000000000" className="text-xs font-bold text-emerald-600 hover:underline block mt-2">
+                1800-202-FOOD (+91 90000 00000)
               </a>
             </div>
           </div>

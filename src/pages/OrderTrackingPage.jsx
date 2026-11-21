@@ -48,17 +48,17 @@ export default function OrderTrackingPage() {
       }
     ],
     address: {
-      name: 'Shalin Rathod',
+      name: 'Demo Customer',
       street: '123, Green Park',
       city: 'Vadodara',
       state: 'Gujarat',
       pincode: '390001',
-      phone: '+91 98765 43210'
+      phone: '+91 90000 00000'
     },
     totalAmount: 263,
     rider: {
-      name: 'Ramesh Kumar',
-      phone: '+91 98250 12345',
+      name: 'Arjun Singh',
+      phone: '+91 90000 11111',
       bikeNumber: 'GJ-06-BQ-4912',
       rating: 4.9
     },

@@ -198,3 +198,63 @@ CREATE POLICY "No direct client access to OTP table"
 
 -- Enable Supabase Realtime Publication
 ALTER PUBLICATION supabase_realtime ADD TABLE public.orders, public.delivery_locations, public.order_status_history;
+
+-- ================================================================
+-- 9. SECURE SERVER-SIDE DELIVERY OTP VERIFICATION RPC (Zero Client Trust)
+-- ================================================================
+
+CREATE OR REPLACE FUNCTION public.verify_delivery_otp(
+    p_order_id VARCHAR(32),
+    p_otp_code VARCHAR(10)
+)
+RETURNS JSONB
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+    v_record RECORD;
+    v_input_hash VARCHAR(128);
+BEGIN
+    SELECT * INTO v_record
+    FROM public.delivery_otp
+    WHERE order_id = p_order_id;
+
+    IF NOT FOUND THEN
+        RETURN jsonb_build_object('success', false, 'message', 'No active delivery OTP found for this order.');
+    END IF;
+
+    IF v_record.verified_at IS NOT NULL THEN
+        RETURN jsonb_build_object('success', false, 'message', 'This delivery OTP has already been verified.');
+    END IF;
+
+    IF NOW() > v_record.expires_at THEN
+        RETURN jsonb_build_object('success', false, 'message', 'Delivery OTP has expired. Please request a new code.');
+    END IF;
+
+    IF v_record.attempts >= v_record.max_attempts THEN
+        RETURN jsonb_build_object('success', false, 'message', 'Maximum verification attempts exceeded. Please contact support.');
+    END IF;
+
+    -- Compute SHA-256 hash server-side
+    v_input_hash := encode(digest(p_otp_code, 'sha256'), 'hex');
+
+    IF v_input_hash = v_record.otp_hash THEN
+        UPDATE public.delivery_otp
+        SET verified_at = NOW()
+        WHERE order_id = p_order_id;
+
+        UPDATE public.orders
+        SET order_status = 'Delivered',
+            delivered_at = NOW()
+        WHERE id = p_order_id;
+
+        RETURN jsonb_build_object('success', true, 'message', 'Delivery verified successfully!');
+    ELSE
+        UPDATE public.delivery_otp
+        SET attempts = attempts + 1
+        WHERE order_id = p_order_id;
+
+        RETURN jsonb_build_object('success', false, 'message', 'Invalid verification code. Please check your email.');
+    END IF;
+END;
+$$;

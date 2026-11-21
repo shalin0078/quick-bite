@@ -106,7 +106,7 @@ export default function LoginPage() {
                 required
                 value={emailOrId}
                 onChange={(e) => { setEmailOrId(e.target.value); setError(''); }}
-                placeholder="e.g. shalin@example.com or QB-CUST-849201"
+                placeholder="e.g. customer@quickbite.demo or QB-CUST-849201"
                 className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FC8019]/40 focus:border-[#FC8019] transition"
               />
             </div>
@@ -183,34 +183,40 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Quick Demo Accounts Switcher */}
-        <div className="mt-4 pt-4 border-t border-gray-100 bg-orange-50/50 rounded-2xl p-3.5 text-center">
+        {/* Safe Demo Credential Pre-fill (Fills fields for testing, requires real validation) */}
+        <div className="mt-4 pt-4 border-t border-gray-100 bg-gray-50/70 rounded-2xl p-3.5 text-center">
           <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block mb-2">
-            One-Click Demo Roles
+            Demo Evaluation Helpers
           </span>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <button
-              onClick={() => handleQuickDemoLogin('customer')}
-              className="py-1.5 px-2 bg-white rounded-lg border border-orange-200 text-[11px] font-bold text-gray-800 hover:bg-orange-100 transition flex items-center justify-center space-x-1"
+              type="button"
+              onClick={() => {
+                setEmailOrId('customer@quickbite.demo');
+                setPassword('password123');
+                setError('');
+              }}
+              className="py-1.5 px-2 bg-white rounded-lg border border-gray-200 text-[11px] font-bold text-gray-800 hover:bg-orange-50 hover:text-[#FC8019] transition flex items-center justify-center space-x-1"
             >
               <UserCheck className="w-3 h-3 text-[#FC8019]" />
-              <span>Customer</span>
+              <span>Fill Customer Demo</span>
             </button>
             <button
-              onClick={() => handleQuickDemoLogin('delivery_partner')}
-              className="py-1.5 px-2 bg-white rounded-lg border border-orange-200 text-[11px] font-bold text-gray-800 hover:bg-orange-100 transition flex items-center justify-center space-x-1"
+              type="button"
+              onClick={() => {
+                setEmailOrId('rider@quickbite.demo');
+                setPassword('rider123');
+                setError('');
+              }}
+              className="py-1.5 px-2 bg-white rounded-lg border border-gray-200 text-[11px] font-bold text-gray-800 hover:bg-orange-50 hover:text-emerald-600 transition flex items-center justify-center space-x-1"
             >
               <Bike className="w-3 h-3 text-emerald-600" />
-              <span>Rider</span>
-            </button>
-            <button
-              onClick={() => handleQuickDemoLogin('admin')}
-              className="py-1.5 px-2 bg-white rounded-lg border border-orange-200 text-[11px] font-bold text-gray-800 hover:bg-orange-100 transition flex items-center justify-center space-x-1"
-            >
-              <ShieldCheck className="w-3 h-3 text-blue-600" />
-              <span>Admin</span>
+              <span>Fill Rider Demo</span>
             </button>
           </div>
+          <p className="text-[10px] text-gray-400 mt-2">
+            Admin access requires explicit administrator credentials.
+          </p>
         </div>
       </div>
     </div>

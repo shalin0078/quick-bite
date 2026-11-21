@@ -13,15 +13,15 @@ export const useAuth = () => {
   return context;
 };
 
-// Default seed users for immediate evaluation & testing
+// Default synthetic demo users for initial evaluation
 const DEFAULT_USERS = [
   {
     id: 'cust-1',
     customUserId: 'QB-CUST-849201',
-    fullName: 'Shalin Rathod',
-    email: 'shalin@example.com',
+    fullName: 'Demo Customer',
+    email: 'customer@quickbite.demo',
     passwordHash: 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', // sha256('password123')
-    phone: '+91 98765 43210',
+    phone: '+91 90000 00000',
     role: 'customer',
     isEmailVerified: true,
     createdAt: new Date().toISOString()
@@ -29,10 +29,10 @@ const DEFAULT_USERS = [
   {
     id: 'rider-1',
     customUserId: 'QB-RIDER-392011',
-    fullName: 'Ramesh Kumar',
-    email: 'ramesh.rider@quickbite.in',
+    fullName: 'Arjun Singh (Demo Partner)',
+    email: 'rider@quickbite.demo',
     passwordHash: '725902b4bb797db2445cc33633ab0a9058b8f80ee0e8f7cb0eb52d5e75143003', // sha256('rider123')
-    phone: '+91 98250 12345',
+    phone: '+91 90000 11111',
     role: 'delivery_partner',
     vehicleType: 'TVS Ntorq 125 (Scooter)',
     bikeNumber: 'GJ-06-BQ-4912',
@@ -45,9 +45,9 @@ const DEFAULT_USERS = [
     id: 'admin-1',
     customUserId: 'QB-ADMIN-000001',
     fullName: 'QuickBite Operations Lead',
-    email: 'admin@quickbite.in',
+    email: 'admin@quickbite.demo',
     passwordHash: '0192023a7bbd73250516f069df18b500ee06497f56eb7223b9d0e2e50570b741', // sha256('admin123')
-    phone: '+91 99999 88888',
+    phone: '+91 90000 99999',
     role: 'admin',
     isEmailVerified: true,
     createdAt: new Date().toISOString()
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
       const saved = localStorage.getItem('quickbite_active_user');
-      // Default to Shalin Rathod as initial customer session
+      // Default to Demo Customer as initial customer session
       return saved ? JSON.parse(saved) : DEFAULT_USERS[0];
     } catch {
       return DEFAULT_USERS[0];
@@ -288,6 +288,11 @@ export const AuthProvider = ({ children }) => {
 
   // 7. DEMO ROLE SWITCHER (For rapid testing in review/dev)
   const switchDemoRole = (role) => {
+    // Prevent arbitrary admin elevation in production builds
+    if (role === 'admin' && !import.meta.env.DEV) {
+      console.warn('Admin access requires explicit credential authentication.');
+      return null;
+    }
     const target = users.find(u => u.role === role) || DEFAULT_USERS.find(u => u.role === role);
     if (target) {
       setCurrentUser(target);
